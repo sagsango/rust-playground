@@ -1,0 +1,10 @@
+[package]
+name = "experiment"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bitvec = "1.0"
+memoffset = "0.6.5"
+spin = "0.9.8"  # or the latest version
+libc = "0.2.155"  # Use the latest version available
