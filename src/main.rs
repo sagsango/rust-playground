@@ -21,6 +21,7 @@ mod stdinTest;
 mod miscelleneousTest;
 mod matchTest;
 mod traitTest;
+mod configTest;
 
 /* Memory managrment */
 mod staticTest;
@@ -86,6 +87,7 @@ fn main() {
     tests.insert("copyTraitTest", copyTraitTest::test as fn());
     tests.insert("unsafeTest", unsafeTest::test as fn());
     tests.insert("glibcTest", glibcTest::test as fn());
+    tests.insert("configTest", configTest::test as fn());
 
     // run all the tests
     for (name, test) in tests.iter() {
