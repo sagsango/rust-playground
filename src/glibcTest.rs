@@ -1,6 +1,23 @@
 // Here we we see how to use c library - glibc
 extern crate libc;
 
+///
+/// Test the glibc functionality
+/// We are testing the following:
+/// - stdout
+/// - stdin
+/// - fopen
+/// - fclose
+/// - malloc
+/// - free
+/// - getcwd
+/// - getpid
+/// - getppid
+/// - getuid
+/// - getgid
+/// - syscall
+/// - write
+/// 
 pub fn test() {
     // stdout
     unsafe {

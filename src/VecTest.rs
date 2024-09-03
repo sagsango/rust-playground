@@ -1,6 +1,12 @@
 use std::mem;
 use std::vec::Vec;
 
+///
+/// Vector is a growable, mutable, owned, heap allocated, contiguous collection of elements.
+/// It is a linear data structure.
+/// We are using std::vec::Vec
+/// Time complexity is O(1) for insert, deletion at end.
+/// 
 pub fn test() {
     /* XXX: Vector */
     let mut v = Vec::new();

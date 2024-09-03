@@ -545,6 +545,17 @@ fn test8() {
     println!("Imaginary: {}", complex.imaginary());
 }
 
+///
+/// This is the main function which will test all the trait functionalities
+/// traits in Rust are similar to interfaces in other languages, like Java or C#
+/// they are used to define shared behavior across different types
+/// they have method signatures that the implementing type must define
+/// they can provide default method implementations
+/// they can be used as bounds in generic functions or structs
+/// they cant not have fields, only methods
+/// they can be used with dynamic dispatch via dyn Trait
+/// they can be used to create abstractions in Rust
+/// 
 pub fn test() {
     test1(); // test Animal trait
     test2(); // test Person trait

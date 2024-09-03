@@ -360,6 +360,13 @@ fn atomic_test() {
     atomic_test2();
 }
 
+
+/// Test the concurrency functionality
+/// We are testing the following:
+/// - mutex_test
+/// - barrier_test
+/// - atomic_test
+/// 
 pub fn test() {
     mutex_test();
     barrier_test();

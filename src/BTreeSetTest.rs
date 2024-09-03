@@ -1,5 +1,12 @@
 use std::collections::BTreeSet;
 
+///
+/// BTreeSet is a set based on a B-Tree.
+/// Time complexity is O(log n) for insert, delete, search.
+/// This is a sorted set.
+/// we are using std::collections::BTreeSet
+/// Every key is unique, and olny one copy of the key is stored.
+/// 
 pub fn test() {
     /* XXX: BTreeSet */
     let mut b = std::collections::BTreeSet::new();

@@ -6,7 +6,10 @@ fn copy_and_return(vector: &mut Vec<String>, value: &str) -> String {
     value.to_string()
 }
 
-
+///
+/// Copy and return the value
+/// This is a miscelleneous test
+/// 
 pub fn test() {
     let name1 = "Joe";
     let name2 = "Chris";

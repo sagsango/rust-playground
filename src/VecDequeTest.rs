@@ -1,6 +1,12 @@
 use std::collections::VecDeque;
 
 
+///
+/// VecDeque is a double-ended queue implemented with a growable ring buffer.
+/// It is a linear data structure.
+/// It is a growable, mutable, owned, UTF-8 encoded string.
+/// We are using std::collections::VecDeque
+/// 
 pub fn test() {
     /* XXX: VecDeque */
     let mut v = std::collections::VecDeque::new();

@@ -344,6 +344,18 @@ fn copy_trait_primitive_types() {
 fn copy_trait_non_primitive_types() {
     copy_trait_non_primitive_types1();
 }
+
+///
+/// Test the Copy trait
+/// We are testing the following:
+/// - copy_trait_primitive_types
+/// - copy_trait_non_primitive_types
+/// - struct_test
+/// - enum_test
+/// - touple_test
+/// - array_test
+/// - slice_test
+/// 
 pub fn test() {
     // Copy trait for primitive types
     copy_trait_primitive_types();

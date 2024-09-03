@@ -71,7 +71,14 @@ fn multiple_borrow_collection() {
     println!("Value: {:?}", w);
 }
 
-
+///
+/// Test the borrow functionality
+/// We are testing the following:
+/// - mut_borrow
+/// - immut_borrow
+/// - multiple_borrow_primitive
+/// - multiple_borrow_collection
+/// 
 pub fn test() {
     mut_borrow();
     immut_borrow();

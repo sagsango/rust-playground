@@ -130,7 +130,15 @@ fn test_string_slice() {
 
 
 
-
+///
+/// Test slice
+/// slice are a reference to a contiguous sequence of elements in a collection
+/// slice are a view into a collection
+/// slice are a smart pointer
+/// slice are a fat pointer
+/// slice are a double word
+/// slice are a pointer to the start of the slice and the length of the slice
+/// 
 pub fn test() {
     test_array_vs_slice();
     test_array_slice();

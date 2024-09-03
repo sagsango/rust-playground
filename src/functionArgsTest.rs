@@ -164,6 +164,18 @@ fn lifetime_test() {
     lifetime_test3();
 }
 
+
+/// 
+/// Test the function arguments
+/// We are testing the following:
+/// - pass_string
+/// - pass_str
+/// - pass_slice
+/// - pass_array
+/// - pass_vector
+/// - slice_ans_vector
+/// - lifetime_test
+/// 
 pub fn test() {
     slice_ans_vector();
     lifetime_test();

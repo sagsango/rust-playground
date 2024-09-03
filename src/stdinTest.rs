@@ -1,6 +1,20 @@
 use std::io::stdin;
 use std::io::Read;
 
+
+///
+/// This function is used to test the stdin functionality
+/// We are testing the following:
+/// - Read a number in a line
+/// - Read multiple numbers in a line
+/// - Read a string in a line
+/// - Read multiple strings in a line
+/// - Read a char in a line
+/// - Read multiple chars in a line
+/// - Read a float in a line
+/// - Read multiple floats in a line
+/// - Read a line
+/// 
 pub fn test() {
 
     println!("Enter a number in line:");

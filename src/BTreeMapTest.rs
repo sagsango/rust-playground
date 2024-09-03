@@ -1,6 +1,12 @@
 
 use std::collections::BTreeMap;
 
+///
+/// BTreeMap is a map based on a B-Tree.
+/// Time complexity is O(log n) for insert, delete, search.
+/// This is a sorted map.
+/// we are using std::collections::BTreeMap
+/// 
 pub fn test() {
     /* XXX: BTreeMap */
     let mut b = std::collections::BTreeMap::new();

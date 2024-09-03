@@ -1,4 +1,9 @@
 use bitvec::prelude::*;
+
+///
+/// BitSet is a bitset implemented as a bit vector.
+/// It need dependancy on bit-vec crate.
+/// 
 pub fn test() {
     /* XXX: Bitset */
     let mut bitset = bitvec![0; 1024];

@@ -1,4 +1,9 @@
 use std::collections::BinaryHeap;
+
+///
+/// BinaryHeap is a priority queue implemented as a binary heap.
+/// It is a max-heap: the greatest element is always at the front.
+/// 
 pub fn test() {
     /* XXX: BinaryHeap */
     let mut b = std::collections::BinaryHeap::new();

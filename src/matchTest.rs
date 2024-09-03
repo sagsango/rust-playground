@@ -24,7 +24,12 @@ enum Message {
     ChangeColor(Color),
 }
 
-
+///
+/// This function is used to test the match statement
+/// match is used to compare the enums
+/// match is used to compare the Option
+/// match is used to compare the Result
+/// 
 pub fn test() {
     let color = Color::RGB(100, 200, 50);
 

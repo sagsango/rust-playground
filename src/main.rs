@@ -1,3 +1,7 @@
+//! # Rust Programming Language
+//! @brief This is a simple project to test the Rust programming language features.
+//! @author: Sagar Singh
+//! @date: 2024-09-02
 mod hashMapTest;
 mod hashSetTest;
 mod VecTest;
@@ -26,6 +30,34 @@ mod copyTraitTest;
 mod unsafeTest;
 mod glibcTest;
 
+/// Main function to run all the tests
+/// Currently we support the following tests:
+/// - hashMapTest
+/// - hashSetTest
+/// - VecTest
+/// - VecDequeTest
+/// - StringTest
+/// - BTreeMapTest
+/// - BTreeSetTest
+/// - LinkedListTest
+/// - BinaryHeapTest
+/// - BitSetTest
+/// - enumTest
+/// - structTest
+/// - functionArgsTest
+/// - sliceTest
+/// - graphTest
+/// - stdinTest
+/// - miscelleneousTest
+/// - staticTest
+/// - borrowTest
+/// - matchTest
+/// - traitTest
+/// - concurrencyTest
+/// - copyTraitTest
+/// - unsafeTest
+/// - glibcTest
+///  
 fn main() {
     // use hashmap to put the test name and test function
     let mut tests = std::collections::HashMap::new();

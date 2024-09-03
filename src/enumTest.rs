@@ -16,6 +16,12 @@ impl FileSize {
     }
 }
 
+/// 
+/// This function is used to test the enum
+/// Enum is a type that can have a few values.
+/// Every enum value is called a variant.
+/// Variants can store data.
+/// 
 pub fn test() {
     let size = FileSize::Kilobytes(1024);
     println!("Size: {}", size.format_size());

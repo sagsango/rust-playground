@@ -187,6 +187,17 @@ fn test_unsafe_block() {
    test_unsafe_block1();
 }
 
+///
+/// Test the unsafe functionality
+/// We are testing the following:
+/// - unsafe block
+/// - unsafe function
+/// - unsafe variable
+/// - unsafe pointer
+/// - unsafe trait
+/// - unsafe struct
+/// - unsafe impl
+/// 
 pub fn test() {
     test_unsafe_block();
     test_unsafe_function();

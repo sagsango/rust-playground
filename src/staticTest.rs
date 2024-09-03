@@ -75,6 +75,17 @@ impl Rectangle {
     }
 }
 
+///
+/// Test static
+/// Static variables are similar to global variables in C
+/// Static variables are shared between threads
+/// Static variables are mutable
+/// Static variables are unsafe
+/// Static variables are not thread safe
+/// Static variables are not garbage collected
+/// Static variables are not dropped
+/// Static variables are not initialized
+/// 
 pub fn test() {
     increment();
     increment();

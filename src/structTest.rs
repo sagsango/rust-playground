@@ -24,6 +24,14 @@ impl <'lifetime_1, 'lifetime_2> MyStruct<'lifetime_1, 'lifetime_2> {
     }
 }
 
+///
+/// This function is used to test the struct with variable size data
+/// struct in rust is a fixed size data structure
+/// But we can use references to variable size data
+/// they can have member functions
+/// We can add padding to the struct to make it fixed size
+/// In case of references, we need to add lifetime parameter
+/// 
 pub fn test() {
     let data = vec![1, 2, 3, 4, 5];
     let name = String::from("Joe");

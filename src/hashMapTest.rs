@@ -1,6 +1,14 @@
 use std::sync::Arc;
 use std::mem;
 
+///
+/// HashMap is a collection of key-value pairs.
+/// It is a non-linear data structure.
+/// It is a hash table based implementation.
+/// Time complexity is O(1) for insert, delete, search.
+/// We are using std::collections::HashMap
+/// Check the library implementation for more details, in case of collisions.
+/// 
 pub fn test() {
     /* XXX: HashMap*/
     let shared_message  = Arc::new(String::from("Hello, World!"));

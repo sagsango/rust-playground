@@ -2,6 +2,15 @@ use std::collections::HashMap;
 use std::collections::LinkedList;
 use std::vec::Vec;
 
+///
+/// Graph is a collection of nodes and edges.
+/// It is a non-linear data structure.
+/// We can represent graph in multiple ways:
+/// - HashMap
+/// - Vec
+/// - Vec of Vec
+/// - Vec of LinkedList
+/// 
 pub fn test() {
     /* XXX: Graph */
      /* XXX: Graph of given size */
