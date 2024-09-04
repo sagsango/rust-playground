@@ -40,4 +40,38 @@ pub fn test() {
     };
    println!("Message: {}", msg);
 
+
+    /* How to create object with typename */
+   let mut hashmap:std::collections::HashMap<i32, String> = std::collections::HashMap::new();
+    hashmap.insert(1, String::from("One"));
+    hashmap.insert(2, String::from("Two"));
+    hashmap.insert(3, String::from("Three"));
+    hashmap.insert(4, String::from("Four"));
+    let message = shared_message.clone().to_string();
+    let insert = hashmap.insert(5, message);
+    match insert {
+        Some(msg) => println!("inserted Message: {}", msg),
+        None => println!("Message not found"),
+    };
+    for (key, value) in &hashmap {
+        println!("Key: {}, Value: {}", key, value);
+    }
+
+    let msg = match hashmap.get(&5) {
+        Some(msg) => msg,
+        None => &String::from("Not found"),
+    };
+    println!("Message: {}", msg);
+
+}
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_hashMap() {
+        test();
+    }
 }
