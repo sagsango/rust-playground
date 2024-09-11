@@ -2,6 +2,9 @@
 name = "rust-playground"
 version = "0.1.0"
 edition = "2021"
+members = [
+    "Concurrency" # Name of the subproject directory
+]
 
 [dependencies]
 bitvec = "1.0"
