@@ -23,6 +23,7 @@ mod matchTest;
 mod traitTest;
 mod configTest;
 mod logTest;
+mod lazy_staticTest;
 
 /* Memory managrment */
 mod staticTest;
@@ -90,6 +91,7 @@ fn main() {
     tests.insert("glibcTest", glibcTest::test as fn());
     tests.insert("configTest", configTest::test as fn());
     tests.insert("logTest", logTest::test as fn());
+    tests.insert("lazy_staticTest", lazy_staticTest::test as fn());
 
 
      // run only one test

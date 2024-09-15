@@ -13,4 +13,4 @@ spin = "0.9.8"  # or the latest version
 libc = "0.2.155"  # Use the latest version available
 log = "0.4"
 env_logger = "0.10"
-
+lazy_static = "1.4"
