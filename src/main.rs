@@ -22,6 +22,7 @@ mod miscelleneousTest;
 mod matchTest;
 mod traitTest;
 mod configTest;
+mod logTest;
 
 /* Memory managrment */
 mod staticTest;
@@ -88,6 +89,13 @@ fn main() {
     tests.insert("unsafeTest", unsafeTest::test as fn());
     tests.insert("glibcTest", glibcTest::test as fn());
     tests.insert("configTest", configTest::test as fn());
+    tests.insert("logTest", logTest::test as fn());
+
+
+     // run only one test
+     let test = tests.get("logTest").unwrap();
+     test();
+     return;
 
     // run all the tests
     for (name, test) in tests.iter() {
@@ -96,9 +104,7 @@ fn main() {
         println!("Test: {} passed", name);
     }
 
-    // run only one test
-    let test = tests.get("matchTest").unwrap();
-    test();
+   
 }
 
 #[cfg(test)]
