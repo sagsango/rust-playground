@@ -342,6 +342,52 @@ fn atomic_test2() {
 }
 
 
+mod condition_vadibale {
+    // tests the condition variable
+    use std::sync::{Arc, Mutex, Condvar};
+    use std::thread;
+    use std::time::Duration;
+
+    
+    pub fn test() {
+        // Clone the Arc directly using Arc::clone
+        // here we are suppose to use with one Mutex always: https://doc.rust-lang.org/stable/std/sync/struct.Condvar.html
+        // Why they make it outside; Condvar should have its own lock.
+        // This is a standard way of using condition vaiable; 
+        // Thats why I love c; eveything is obvious there.
+        let pair = Arc::new((Mutex::new(false), Condvar::new()));
+        let pair_clone = Arc::clone(&pair);
+
+        let handle1 = thread::spawn(move || {
+            let (lock, cvar) = &*pair_clone;
+            let mut started = lock.lock().unwrap();
+            *started = true;
+            cvar.notify_one();
+        });
+
+        let handle2 = thread::spawn(move || {
+            let (lock, cvar) = &*pair;
+            let mut started = lock.lock().unwrap();
+            while !*started {
+                started = cvar.wait(started).unwrap();
+            }
+        });
+
+        handle1.join().unwrap();
+        handle2.join().unwrap();
+    }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        #[test]
+        fn test_condition_variable() {
+            test();
+        }
+    }
+}
+
 pub fn mutex_test() {
     mutex_test1();
     mutex_test2();
@@ -371,6 +417,7 @@ pub fn test() {
     mutex_test();
     barrier_test();
     atomic_test();
+    condition_vadibale::test();
 }
 
 #[cfg(test)]
