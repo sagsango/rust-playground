@@ -24,6 +24,7 @@ mod traitTest;
 mod configTest;
 mod logTest;
 mod lazy_staticTest;
+mod timeTest;
 
 /* Memory managrment */
 mod staticTest;
@@ -92,12 +93,15 @@ fn main() {
     tests.insert("configTest", configTest::test as fn());
     tests.insert("logTest", logTest::test as fn());
     tests.insert("lazy_staticTest", lazy_staticTest::test as fn());
+    tests.insert("timeTest", timeTest::test as fn());
 
 
      // run only one test
      let test = tests.get("logTest").unwrap();
      test();
-     return;
+
+    // if you want to run only one test, then uncomment the below line
+    // return;
 
     // run all the tests
     for (name, test) in tests.iter() {
