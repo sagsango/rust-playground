@@ -93,7 +93,6 @@ fn test_forget() {
     // you will see drop is called
     // println!("x: {:?}", x); // This will give an error
 
-
     // lets forget the box
     let x = Box::new(MyStruct { a: 42, b: 3.14, c: 'x', d: true });
     println!("x: {:?}", x);
