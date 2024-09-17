@@ -26,6 +26,7 @@ mod logTest;
 mod lazy_staticTest;
 mod timeTest;
 mod memTest;
+mod allocTest;
 
 /* Memory managrment */
 mod staticTest;
@@ -96,6 +97,7 @@ fn main() {
     tests.insert("lazy_staticTest", lazy_staticTest::test as fn());
     tests.insert("timeTest", timeTest::test as fn());
     tests.insert("memTest", memTest::test as fn());
+    tests.insert("allocTest", allocTest::test as fn());
 
 
     // run only one test
