@@ -37,6 +37,32 @@ fn feature_test() {
     {
         println!("feature3 is enabled");
     }
+
+   
+    // cfg(all(feature = "feature1", feature = "feature2")) is true only if both feature1 and feature2 are enabled
+    #[cfg(all(feature = "feature1", feature = "feature2"))]
+    {
+        println!("feature1 and feature2 are enabled");
+    }
+    #[cfg(all(feature = "feature1", feature = "feature3"))]
+    {
+        println!("feature1 and feature3 are enabled");
+    }
+    // cfg(any(feature = "feature1", feature = "feature2")) is true if either feature1 or feature2 is enabled
+    #[cfg(any(feature = "feature1", feature = "feature2"))]
+    {
+        println!("feature1 or feature2 is enabled");
+    }
+    // cfg(not(feature = "feature1")) is true if feature1 is not enabled
+    #[cfg(not(feature = "feature1"))]
+    {
+        println!("feature1 is not enabled");
+    }
+    #[cfg(not(feature = "feature2"))]
+    {
+        println!("feature2 is not enabled");
+    }
+
 }
 
 pub fn test() {
