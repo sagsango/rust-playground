@@ -25,8 +25,8 @@ mod configTest;
 mod logTest;
 mod lazy_staticTest;
 mod timeTest;
-mod memTest;
-mod allocTest;
+mod cfgTest;
+
 
 /* Memory managrment */
 mod staticTest;
@@ -35,6 +35,8 @@ mod concurrencyTest;
 mod copyTraitTest;
 mod unsafeTest;
 mod glibcTest;
+mod memTest;
+mod allocTest;
 
 /// Main function to run all the tests
 /// Currently we support the following tests:
@@ -98,14 +100,15 @@ fn main() {
     tests.insert("timeTest", timeTest::test as fn());
     tests.insert("memTest", memTest::test as fn());
     tests.insert("allocTest", allocTest::test as fn());
+    tests.insert("cfgTest", cfgTest::test as fn());
 
 
     // run only one test
-    let test = tests.get("logTest").unwrap();
+    let test = tests.get("cfgTest").unwrap();
     test();
 
     // if you want to run only one test, then uncomment the below line
-    // return;
+    return;
 
     // run all the tests
     for (name, test) in tests.iter() {
