@@ -63,6 +63,15 @@ fn feature_test() {
         println!("feature2 is not enabled");
     }
 
+
+    // using if else
+    if cfg!(feature = "feature1") {
+        println!("feature1 is enabled");
+    } else {
+        println!("feature1 is not enabled");
+    }
+    
+
 }
 
 pub fn test() {
