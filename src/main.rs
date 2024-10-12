@@ -2,6 +2,8 @@
 //! @brief This is a simple project to test the Rust programming language features.
 //! @author: Sagar Singh
 //! @date: 2024-09-02
+
+use BTreeMapTest::test;
 mod hashMapTest;
 mod hashSetTest;
 mod VecTest;
@@ -37,6 +39,10 @@ mod unsafeTest;
 mod glibcTest;
 mod memTest;
 mod allocTest;
+mod MemoryManagement {
+    pub mod forget;
+    pub mod drop;
+}
 
 /// Main function to run all the tests
 /// Currently we support the following tests:
@@ -101,10 +107,11 @@ fn main() {
     tests.insert("memTest", memTest::test as fn());
     tests.insert("allocTest", allocTest::test as fn());
     tests.insert("cfgTest", cfgTest::test as fn());
-
+    tests.insert("MemoryManagement::forget", MemoryManagement::forget::test_forget as fn());
+    tests.insert("MemoryManagement::drop", MemoryManagement::drop::test_drop as fn());
 
     // run only one test
-    let test = tests.get("cfgTest").unwrap();
+    let test = tests.get("MemoryManagement::forget").unwrap();
     test();
 
     // if you want to run only one test, then uncomment the below line

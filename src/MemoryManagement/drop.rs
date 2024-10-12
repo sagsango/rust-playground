@@ -66,7 +66,7 @@ fn drop_test_0() {
     drop(my_struct); // Here actually refcount goes to zero; so drop() will be called
 }
 
-fn main() {
+pub fn test_drop() {
    drop_test_0();
 }
 
@@ -76,7 +76,7 @@ mod tests {
 
     #[test]
     fn test_drop() {
-       drop_test_0
+       drop_test_0();
     }
 }
 
