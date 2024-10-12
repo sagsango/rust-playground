@@ -181,7 +181,21 @@ fn test_forget_02() {
 }
 
 
-
+/*
+Initial Arc count: 1
+After cloning: Arc count: 2
+Before forgetting: Arc count: 2
+Arc object forgotten!
+Parent continues: Arc count: 2
+After second clone: Arc count: 3
+Before setting to None: Arc count: 3
+Dropping MyEnum::Struct with value: YourStruct { value: 42 } >>> DROPPED!!
+Dropping YourStruct with value: 42 >>> DROPPED!!
+Shared data set to None!
+Arc count after setting to None: 3
+Final Arc count: 2
+Shared data: None
+*/
 fn test_forget_03() {
     // Define a custom struct that implements Drop
     #[derive(Debug)]
