@@ -31,7 +31,9 @@ fn drop_test_0() {
     // 20 threads save handle and then join
     let mut handles = Vec::new();
 
+    println!("Reference count: {}", Arc::strong_count(&my_struct));
     drop(my_struct.clone());
+    println!("Reference count: {}", Arc::strong_count(&my_struct));
 
     for _ in 0..20 {
         let my_struct_clone = Arc::clone(&my_struct);

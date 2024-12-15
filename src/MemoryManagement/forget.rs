@@ -103,6 +103,25 @@ Dropping YourStruct with value: 42----------------------------------------------
 Shared data set to None!
 Arc count after setting to None: 3
 Final Arc count: 2
+
+
+NOTE:
+When you do *data = None; in this context, assuming data_clone2 is an Arc<Mutex<Option<T>>>, you are dereferencing the MutexGuard (data) and setting the underlying value inside the Option<T> to None.
+
+Here’s a step-by-step breakdown of what happens:
+
+Cloning the Arc:
+Arc::clone(&shared_data) creates another reference to the shared data, incrementing the Arc's strong reference count. Both shared_data and data_clone2 will point to the same underlying Arc<Mutex<Option<T>>>.
+Locking the Mutex:
+Inside the spawned thread, when you do let mut data = data_clone2.lock().unwrap();, you are acquiring a lock on the Mutex. This gives you exclusive access to the data wrapped inside the Mutex.
+Setting to None:
+By doing *data = None;, you are modifying the contents of the Option inside the Arc<Mutex<Option<T>>>. This means the inner data (of type T, if it exists) is dropped, and the value becomes None. However, this does not affect the Arc reference count, as it controls the ownership of the Arc, not the contents of the Mutex.
+Dropping the Inner Data:
+The inner value of T (if there was any) is dropped when you set *data = None;. If T is a complex type or owns other resources, its destructor is called.
+Arc Count:
+The Arc::strong_count(&data_clone2) will still reflect the reference count of the Arc, which includes all active references (like shared_data and data_clone2). This count doesn't change by modifying the contents inside the Arc. Only when the references themselves are dropped will the reference count decrease.
+Hence, after setting the data to None, the Arc count will remain the same unless one of the Arc references is dropped.
+
 */
 
 fn test_forget_02() {
@@ -301,6 +320,29 @@ pub fn test_forget() {
     test_forget_01();
     test_forget_02();
     test_forget_03();
+}
+
+pub fn tmp() {
+    struct FancyNum {
+    num: usize
+}
+
+struct DropStruct {
+    fancy: FancyNum
+}
+
+impl Drop for DropStruct {
+    fn drop(&mut self) {
+        // Destruct DropStruct, possibly using FancyNum
+    }
+}
+
+fn main() {
+    let drop_struct = DropStruct{fancy: FancyNum{num: 5}};
+    let ref fancy_field = drop_struct.fancy; // No more errors!
+    println!("Fancy: {}", fancy_field.num);
+    // implicit call to `drop_struct.drop()` as drop_struct goes out of scope
+}
 }
 
 #[cfg(test)]
