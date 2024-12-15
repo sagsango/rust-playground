@@ -28,6 +28,8 @@ mod logTest;
 mod lazy_staticTest;
 mod timeTest;
 mod cfgTest;
+mod backtrace;
+mod strongWeakRefcount;
 
 
 /* Memory managrment */
@@ -109,6 +111,8 @@ fn main() {
     tests.insert("cfgTest", cfgTest::test as fn());
     tests.insert("MemoryManagement::forget", MemoryManagement::forget::test_forget as fn());
     tests.insert("MemoryManagement::drop", MemoryManagement::drop::test_drop as fn());
+    tests.insert("backtrace", backtrace::test as fn());
+    tests.insert("strongWeakRefcount", strongWeakRefcount::test as fn());
 
     // run only one test
     let test = tests.get("MemoryManagement::forget").unwrap();
