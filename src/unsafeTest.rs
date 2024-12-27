@@ -244,7 +244,7 @@ mod tests {
 
     #[test]
     fn test_test_unsafe_struct() {
-        test_unsafe_struct();
+        test_unsafe_struct1();
     }
 
     #[test]

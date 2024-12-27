@@ -142,6 +142,7 @@ fn lifetime_test3() {
         s3 = largest3(&mut s1, &mut s2);
         println!("String: {}", s3);
     }
+    // println!("String: {}", s3); /* `s2` does not live long enough borrowed value does not live long enoughrustcClick */
 }
 
 // 2 different lifetimes

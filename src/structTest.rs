@@ -170,7 +170,7 @@ fn struct_with_clone_debug_drop() {
         println!("my_struct: {:?}", my_struct);
         println!("my_struct_clone: {:?}", my_struct_clone);
         // drop(my_struct); 
-        // calls to `std::mem::drop` with a value that implements `Copy` does nothing 
+        // calls to `std::mem::drop` with a value that implements `Copy` does nothing           (Vecause it must have been copied, and do not know how long it will be used)
         // `#[warn(dropping_copy_types)]` on by defaultrustcClick for full compiler diagnostic
         println!("my_struct_clone: {:?}", my_struct_clone);
 
