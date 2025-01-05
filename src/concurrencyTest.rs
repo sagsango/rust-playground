@@ -290,7 +290,7 @@ fn atomic_test1() {
     let mut handles = vec![];
 
     for _ in 0..100 {
-        let counter = Arc::clone(&counter);
+        let counter: Arc<AtomicUsize> = Arc::clone(&counter);
         let handle = thread::spawn(move || {
             let num = counter.fetch_add(1, Ordering::SeqCst);
             println!("Thread: {:?}, counter: {}", thread::current(), num);

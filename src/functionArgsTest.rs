@@ -46,7 +46,7 @@ fn pass_str_itself(s:str) {
 
 fn slice_ans_vector() {
     let s = String::from("Hello, World!");
-    pass_string(s.clone());
+    pass_string(s);
     //println!("String: {}", s); // XXX: s is moved to pass_string function
 
     let s = String::from("Hello, World!");

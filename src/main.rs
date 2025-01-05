@@ -30,6 +30,7 @@ mod timeTest;
 mod cfgTest;
 mod backtrace;
 mod strongWeakRefcount;
+mod generaricTests;
 
 
 /* Memory managrment */
@@ -113,6 +114,7 @@ fn main() {
     tests.insert("MemoryManagement::drop", MemoryManagement::drop::test_drop as fn());
     tests.insert("backtrace", backtrace::test as fn());
     tests.insert("strongWeakRefcount", strongWeakRefcount::test as fn());
+    tests.insert("generaicTests", generaricTests::test as fn());
 
     // run only one test
     let test = tests.get("MemoryManagement::forget").unwrap();

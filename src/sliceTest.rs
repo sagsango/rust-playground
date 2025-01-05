@@ -11,16 +11,14 @@ use std::vec::Vec;
 5. slice are a fat pointer
 6. slice are a double word
 7. slice are a pointer to the start of the slice and the length of the slice
-
 */
 fn test_array_vs_slice() {
     let array = [1, 2, 3, 4, 5];
     let slice = &array[..];
 
-    println!("Size of array: {}", mem::size_of_val(&array));
-    println!("Size of slice: {}", mem::size_of_val(&slice));
+    println!("Size of array: {}", mem::size_of_val(&array)); // this is 40 bytes = 4 bytes for each element (i32) in the array
+    println!("Size of slice: {}", mem::size_of_val(&slice)); // slice size = 16 bytes = 8 bytes for pointer to start of slice + 8 bytes for length of slice
     println!("Length of array: {}", array.len());
-    println!("Length of slice: {}", slice.len());
     println!("First element of array: {}", array[0]);
     println!("First element of slice: {}", slice[0]);
     println!("Array: {:?}", array);

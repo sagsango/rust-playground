@@ -25,6 +25,7 @@ pub fn test() {
     drop(strong);
     // The data is deallocated, but the weak reference still exists.
     // Attempting to upgrade the weak reference will fail.
+    // Rust is so safe that it will keep track of the what is deallocated and what is not, so weak reference will not be upgraded.
     if let Some(data) = weak.upgrade() {
         println!("Upgraded weak reference: {}", data);
     } else {

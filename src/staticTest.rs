@@ -1,6 +1,8 @@
 
 // This is a static variable and functions tests
 // This file contains the code for the static variable and functions test
+// Why static variables safelty was not implemented in Rust?
+// Because safttey requires dynamic 
 static mut COUNTER: u32 = 0;
 pub fn increment() {
     unsafe {
@@ -75,18 +77,7 @@ impl Rectangle {
     }
 }
 
-///
-/// Test static
-/// Static variables are similar to global variables in C
-/// Static variables are shared between threads
-/// Static variables are mutable
-/// Static variables are unsafe
-/// Static variables are not thread safe
-/// Static variables are not garbage collected
-/// Static variables are not dropped
-/// Static variables are not initialized
-/// 
-pub fn test() {
+fn general_test() {
     increment();
     increment();
     increment();
@@ -107,4 +98,60 @@ pub fn test() {
     // Call the static function to create a square
     let square = Rectangle::square(20);
     println!("The area of the square is {} square pixels.", square.area());
+}
+
+use lazy_static::lazy_static;
+use std::sync::Mutex;
+
+lazy_static! {
+    static ref GLOBAL_COUNT: Mutex<i32> = Mutex::new(0);
+}
+
+fn safe_increment() {
+    let mut count = GLOBAL_COUNT.lock().unwrap();
+    *count += 1;
+}
+
+fn test_safe_static() {
+     // Reset the global count to 0 before testing
+     *GLOBAL_COUNT.lock().unwrap() = 0;
+
+     // Call the increment function
+     safe_increment();
+     safe_increment();
+
+     // Check the value of the global count
+     let count = GLOBAL_COUNT.lock().unwrap();
+     assert_eq!(*count, 2);
+}
+
+///
+/// Test static
+/// Static variables are similar to global variables in C
+/// Static variables are shared between threads
+/// Static variables are mutable
+/// Static variables are unsafe
+/// Static variables are not thread safe
+/// Static variables are not garbage collected
+/// Static variables are not dropped
+/// Static variables are not initialized
+/// 
+pub fn test() {
+    general_test();
+    test_safe_static();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_static() {
+        test();
+    }
+
+    #[test]
+    fn _test_safe_static() {
+        test_safe_static();
+    }
 }
