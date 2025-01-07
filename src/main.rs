@@ -31,7 +31,9 @@ mod cfgTest;
 mod backtrace;
 mod strongWeakRefcount;
 mod generaricTests;
-
+mod debugWhoTookTheLock;
+mod debugArc;
+mod debugArcMultiStruct;
 
 /* Memory managrment */
 mod staticTest;
@@ -42,10 +44,8 @@ mod unsafeTest;
 mod glibcTest;
 mod memTest;
 mod allocTest;
-mod MemoryManagement {
-    pub mod forget;
-    pub mod drop;
-}
+mod dropTest;
+mod forgetTest;
 
 /// Main function to run all the tests
 /// Currently we support the following tests:
@@ -110,11 +110,16 @@ fn main() {
     tests.insert("memTest", memTest::test as fn());
     tests.insert("allocTest", allocTest::test as fn());
     tests.insert("cfgTest", cfgTest::test as fn());
-    tests.insert("MemoryManagement::forget", MemoryManagement::forget::test_forget as fn());
-    tests.insert("MemoryManagement::drop", MemoryManagement::drop::test_drop as fn());
+    tests.insert("forgetTest", forgetTest::test as fn());
+    tests.insert("dropTest", dropTest::test as fn());
     tests.insert("backtrace", backtrace::test as fn());
     tests.insert("strongWeakRefcount", strongWeakRefcount::test as fn());
     tests.insert("generaicTests", generaricTests::test as fn());
+    tests.insert("debugWhoTookTheLock", debugWhoTookTheLock::test as fn());
+    tests.insert("debugArc", debugArc::test as fn());
+    tests.insert("debugArcMultiStruct", debugArcMultiStruct::test as fn());
+  
+
 
     // run only one test
     let test = tests.get("MemoryManagement::forget").unwrap();

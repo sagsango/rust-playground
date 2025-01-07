@@ -12,7 +12,6 @@ forget(object) :
                 3. If object = Arc::clone(&parent_object), when parent_object goes out of scope, the refcount will be decremented by 1.
                 4. When refcount becomes 0 then only drop() will be called (object will be dropped).
                 
-
 Initial Arc count: 1
 Initial Arc count: 2
 Initial Arc count: 2
@@ -26,7 +25,6 @@ Shared data set to None!
 Arc count after setting to None: 3
 Final Arc count: 2
 */
-
 
 pub fn test_forget_01() {
     // Create a shared Arc object with some initial data
@@ -86,8 +84,6 @@ pub fn test_forget_01() {
     println!("Final Arc count: {}", Arc::strong_count(&shared_data));
 }
 
-
-
 /*
 Setting Data to None results the call of  drop() function of the struct.
 Even the object is dropped, the refcount will still not zero.
@@ -99,11 +95,10 @@ Arc object forgotten!
 Parent continues: Arc count: 2
 After second clone: Arc count: 3
 Before setting to None: Arc count: 3
-Dropping YourStruct with value: 42---------------------------------------------->>> DROPPED!!
+Dropping YourStruct with value: 42 ---------------------------------------------->>> DROPPED!!
 Shared data set to None!
 Arc count after setting to None: 3
 Final Arc count: 2
-
 
 NOTE:
 When you do *data = None; in this context, assuming data_clone2 is an Arc<Mutex<Option<T>>>, you are dereferencing the MutexGuard (data) and setting the underlying value inside the Option<T> to None.
@@ -121,7 +116,6 @@ The inner value of T (if there was any) is dropped when you set *data = None;. I
 Arc Count:
 The Arc::strong_count(&data_clone2) will still reflect the reference count of the Arc, which includes all active references (like shared_data and data_clone2). This count doesn't change by modifying the contents inside the Arc. Only when the references themselves are dropped will the reference count decrease.
 Hence, after setting the data to None, the Arc count will remain the same unless one of the Arc references is dropped.
-
 */
 
 fn test_forget_02() {
@@ -198,7 +192,6 @@ fn test_forget_02() {
     // Print the value of the shared data
     println!("Shared data: {:?}", shared_data.lock().unwrap());
 }
-
 
 /*
 Initial Arc count: 1
@@ -316,33 +309,35 @@ fn test_forget_03() {
     println!("Shared data: {:?}", shared_data.lock().unwrap());
 }
 
-pub fn test_forget() {
+pub fn test() {
     test_forget_01();
     test_forget_02();
     test_forget_03();
+    tmp();
 }
 
 pub fn tmp() {
     struct FancyNum {
-    num: usize
-}
-
-struct DropStruct {
-    fancy: FancyNum
-}
-
-impl Drop for DropStruct {
-    fn drop(&mut self) {
-        // Destruct DropStruct, possibly using FancyNum
+        num: usize
     }
-}
 
-fn main() {
-    let drop_struct = DropStruct{fancy: FancyNum{num: 5}};
-    let ref fancy_field = drop_struct.fancy; // No more errors!
-    println!("Fancy: {}", fancy_field.num);
-    // implicit call to `drop_struct.drop()` as drop_struct goes out of scope
-}
+    struct DropStruct {
+        fancy: FancyNum
+    }
+
+    impl Drop for DropStruct {
+        fn drop(&mut self) {
+            // Destruct DropStruct, possibly using FancyNum
+        }
+    }
+
+    {
+        let drop_struct = DropStruct{fancy: FancyNum{num: 5}};
+        let ref fancy_field = drop_struct.fancy; // No more errors!
+        println!("Fancy: {}", fancy_field.num);
+        // implicit call to `drop_struct.drop()` as drop_struct goes out of scope
+    }
+    
 }
 
 #[cfg(test)]
@@ -354,6 +349,3 @@ mod tests {
         test_forget_03();
     }
 }
-
-
-

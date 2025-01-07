@@ -17,7 +17,7 @@ impl Drop for MyStruct {
     ** It can be called 2 ways:
     ** 1. Explicitly calling drop() method
     ** 2. When the value goes out of scope
-     */
+    */
     fn drop(&mut self) {
         println!("Dropping MyStruct with data: {}", self.data);
     }
@@ -68,7 +68,7 @@ fn drop_test_0() {
     drop(my_struct); // Here actually refcount goes to zero; so drop() will be called
 }
 
-pub fn test_drop() {
+pub fn test() {
    drop_test_0();
 }
 
@@ -81,5 +81,3 @@ mod tests {
        drop_test_0();
     }
 }
-
-
