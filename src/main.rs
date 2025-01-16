@@ -34,6 +34,7 @@ mod generaricTests;
 mod debugWhoTookTheLock;
 mod debugArc;
 mod debugArcMultiStruct;
+mod dynamicDispatchTest;
 
 /* Memory managrment */
 mod staticTest;
@@ -118,6 +119,7 @@ fn main() {
     tests.insert("debugWhoTookTheLock", debugWhoTookTheLock::test as fn());
     tests.insert("debugArc", debugArc::test as fn());
     tests.insert("debugArcMultiStruct", debugArcMultiStruct::test as fn());
+    tests.insert("dynamicDispatchTest", dynamicDispatchTest::test as fn());
   
 
 
