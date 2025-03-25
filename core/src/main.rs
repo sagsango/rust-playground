@@ -47,6 +47,7 @@ mod memTest;
 mod allocTest;
 mod dropTest;
 mod forgetTest;
+mod refCellTest;
 
 /// Main function to run all the tests
 /// Currently we support the following tests:
@@ -120,6 +121,7 @@ fn main() {
     tests.insert("debugArc", debugArc::test as fn());
     tests.insert("debugArcMultiStruct", debugArcMultiStruct::test as fn());
     tests.insert("dynamicDispatchTest", dynamicDispatchTest::test as fn());
+    tests.insert("refCellTest", refCellTest::test);
   
 
 
