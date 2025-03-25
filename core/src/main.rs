@@ -32,6 +32,7 @@ mod backtrace;
 mod strongWeakRefcount;
 mod generaricTests;
 mod dynamicDispatchTest;
+mod closureTest;
 
 /* Memory managrment */
 mod staticTest;
@@ -116,6 +117,7 @@ fn main() {
     tests.insert("generaicTests", generaricTests::test as fn());
     tests.insert("dynamicDispatchTest", dynamicDispatchTest::test as fn());
     tests.insert("refCellTest", refCellTest::test);
+    tests.insert("closureTest", closureTest::test);
   
 
 
