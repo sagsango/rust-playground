@@ -31,9 +31,6 @@ mod cfgTest;
 mod backtrace;
 mod strongWeakRefcount;
 mod generaricTests;
-mod debugWhoTookTheLock;
-mod debugArc;
-mod debugArcMultiStruct;
 mod dynamicDispatchTest;
 
 /* Memory managrment */
@@ -117,9 +114,6 @@ fn main() {
     tests.insert("backtrace", backtrace::test as fn());
     tests.insert("strongWeakRefcount", strongWeakRefcount::test as fn());
     tests.insert("generaicTests", generaricTests::test as fn());
-    tests.insert("debugWhoTookTheLock", debugWhoTookTheLock::test as fn());
-    tests.insert("debugArc", debugArc::test as fn());
-    tests.insert("debugArcMultiStruct", debugArcMultiStruct::test as fn());
     tests.insert("dynamicDispatchTest", dynamicDispatchTest::test as fn());
     tests.insert("refCellTest", refCellTest::test);
   

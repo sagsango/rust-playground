@@ -57,7 +57,7 @@ fn print_strong_counts(a: &Arc<A>, b: &Arc<B>, c: &Arc<C>, d: &Arc<D>) {
     );
 }
 
-fn main() {
+pub fn test() {
     // Create the structures
     let d = Arc::new(D {
         name: "D".to_string(),
