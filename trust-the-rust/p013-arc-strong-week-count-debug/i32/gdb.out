@@ -1,0 +1,80 @@
+~ ❱❱❱ gdb -p 2967367
+GNU gdb (GDB) Rocky Linux 8.2-20.el8.0.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-redhat-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+Attaching to process 2967367
+Reading symbols from /home/sagar.singh/arc...done.
+Reading symbols from /lib64/libgcc_s.so.1...Reading symbols from .gnu_debugdata for /lib64/libgcc_s.so.1...(no debugging symbols found)...done.
+(no debugging symbols found)...done.
+Reading symbols from /lib64/libpthread.so.0...(no debugging symbols found)...done.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+Reading symbols from /lib64/libdl.so.2...(no debugging symbols found)...done.
+Reading symbols from /lib64/libc.so.6...(no debugging symbols found)...done.
+Reading symbols from /lib64/ld-linux-x86-64.so.2...done.
+arc::main () at arc.rs:22
+22	    loop { }
+warning: Missing auto-load script at offset 0 in section .debug_gdb_scripts
+of file /home/sagar.singh/arc.
+Use `info auto-load python-scripts [REGEXP]' to list them.
+Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-251.el8_10.31.x86_64 libgcc-8.5.0-28.el8_10.x86_64
+(gdb) bt
+#0  arc::main () at arc.rs:22
+(gdb) l
+17
+18	    // Keep variables alive and give time to attach gdb
+19	    let _keep = (&a, &b, &c);
+20
+21	    println!("Sleeping for 300 seconds... attach gdb now");
+22	    loop { }
+23	//    thread::sleep(Duration::from_secs(300));
+24
+25	    // Use them again so optimizer cannot drop them too early
+26	    println!("values: {}, {}, {}", *a, *b, *c);
+(gdb) info frame
+Stack level 0, frame at 0x7ffe60e554e0:
+ rip = 0x56301cc08be1 in arc::main (arc.rs:22); saved rip = 0x56301cc07b6b
+ source language rust.
+ Arglist at 0x7ffe60e551d8, args:
+ Locals at 0x7ffe60e551d8, Previous frame's sp is 0x7ffe60e554e0
+ Saved registers:
+  rip at 0x7ffe60e554d8
+(gdb) bt
+#0  arc::main () at arc.rs:22
+(gdb) info locals
+_keep = (0x7ffe60e55228, 0x7ffe60e55230, 0x7ffe60e55238)
+c = alloc::sync::Arc<i32, alloc::alloc::Global> {ptr: core::ptr::non_null::NonNull<alloc::sync::ArcInner<i32>> {pointer: 0x56301df83950}, phantom: core::marker::PhantomData<alloc::sync::ArcInner<i32>>, alloc: alloc::alloc::Global}
+b = alloc::sync::Arc<i32, alloc::alloc::Global> {ptr: core::ptr::non_null::NonNull<alloc::sync::ArcInner<i32>> {pointer: 0x56301df83950}, phantom: core::marker::PhantomData<alloc::sync::ArcInner<i32>>, alloc: alloc::alloc::Global}
+a = alloc::sync::Arc<i32, alloc::alloc::Global> {ptr: core::ptr::non_null::NonNull<alloc::sync::ArcInner<i32>> {pointer: 0x56301df83950}, phantom: core::marker::PhantomData<alloc::sync::ArcInner<i32>>, alloc: alloc::alloc::Global}
+(gdb) p &a
+$1 = (alloc::sync::Arc<i32, alloc::alloc::Global> *) 0x7ffe60e55228
+(gdb) p &b
+$2 = (alloc::sync::Arc<i32, alloc::alloc::Global> *) 0x7ffe60e55230
+(gdb) p &c
+$3 = (alloc::sync::Arc<i32, alloc::alloc::Global> *) 0x7ffe60e55238
+(gdb) x/8gx 0x7ffe60e55228
+0x7ffe60e55228:	0x000056301df83950	0x000056301df83950
+0x7ffe60e55238:	0x000056301df83950	0x000056301ce52df8
+0x7ffe60e55248:	0x0000000000000002	0x00007ffe60e55270
+0x7ffe60e55258:	0x0000000000000001	0x0000000000000000
+(gdb) x/8gx 0x000056301df83950
+0x56301df83950:	0x0000000000000003	0x0000000000000001
+0x56301df83960:	0x00007ffe000000ff	0x00000000000206a1
+0x56301df83970:	0x0000000000000000	0x0000000000000000
+0x56301df83980:	0x0000000000000000	0x0000000000000000
+(gdb) x/8wx 0x000056301df83950
+0x56301df83950:	0x00000003	0x00000000	0x00000001	0x00000000
+0x56301df83960:	0x000000ff	0x00007ffe	0x000206a1	0x00000000
+(gdb) quit
